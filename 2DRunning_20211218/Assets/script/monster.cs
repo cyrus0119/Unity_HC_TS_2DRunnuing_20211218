@@ -19,6 +19,6 @@ public class monster : MonoBehaviour
 
     //√C¶‚color
     public Color colorA;
-
+    public Color colorB = new Color(0.3f, 0, 0.4f, 0.9f); //∑s√C¶‚RGBA
     #endregion
 }
