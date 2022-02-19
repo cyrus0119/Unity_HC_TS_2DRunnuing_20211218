@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 /// <summary>
 /// 學習判斷式
 /// 1. if
@@ -9,9 +10,20 @@ public class Learncondition : MonoBehaviour
 {
     public bool faskey = true ;
     public int combo = 0;
+    public string weapon;
+
+    // 列舉 enum (下拉式選單)
+    // 1. 定義列舉
+    public enum Season
+        {
+            spring, summer, fall, winter
+        }
+    // 2. 實作列舉
+    public Season season;
 
     private void Start()
     {
+        #region if 判斷式
         // if 語法
         // if (布林值) {程式區塊、演算法、陳述式}
         //快速完成 if + tab*2
@@ -33,10 +45,42 @@ public class Learncondition : MonoBehaviour
         {
             print("kotowaru");
         }
+        #endregion
+
+        //switch 語法
+        //switch 判斷的資料
+        //{
+        //  case 值1:
+        //      程式內容;
+        //      斷開;
+        //  case 值2:
+        //      程式內容;
+        //      斷開;
+        //  default:
+        //      程式內容;
+        //      斷開;
+        //}
+
+        switch (weapon)
+        {
+          case "單手劍":
+              print("akt 10");
+              break;
+            case "雙手劍":
+                print("akt 30");
+                break;
+            case "闊劍":
+                print("akt 20");
+                break;
+            default:
+                print("這不是武器");
+                break;
+        }
     }
 
     private void Update()
     {
+        #region if 判斷式2  
         //else if 必須在 if 下方 沒有數量限制
         //else if (布林值) {程式區塊、演算法、陳述式}
         //連擊等於10攻擊力加10
@@ -54,6 +98,7 @@ public class Learncondition : MonoBehaviour
         {
             print("攻擊力加500");
         }
+        #endregion
     }
 
 }
