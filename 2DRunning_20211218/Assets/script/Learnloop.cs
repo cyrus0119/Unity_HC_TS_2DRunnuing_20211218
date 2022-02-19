@@ -9,10 +9,14 @@ using UnityEngine;
 /// </summary>
 public class Learnloop : MonoBehaviour
 {
+    public int[] exp = new int[10] ;
+
+
     //迴圈作用
     //處理重複程式
     private void Start()
     {
+        #region while 與 for
         //輸出5次哈囉 非迴圈
         /*
         print("哈囉");
@@ -33,7 +37,7 @@ public class Learnloop : MonoBehaviour
         }
         */
         int count = 0;
-        while (count<5)
+        while (count < 5)
         {
             print("哈囉");
             count++;
@@ -42,13 +46,19 @@ public class Learnloop : MonoBehaviour
         //for迴圈(初始值; 布林值; 迴圈結束會執行程式)
         for (int i = 0; i < 5; i++)
         {
-            print("哈囉" + i );
+            print("哈囉");
         }
         //輸出數字0-100 以5遞增
-        for (int i = 0; i < 101; i+=5)
+        for (int i = 0; i < 101; i += 5)
         {
             print("輸出數字:" + i);
         }
-    }
 
+        #endregion
+
+        for (int i = 0; i < exp.Length; i++)
+        {
+                        exp[i] = 200 * (i+1);
+        }
+    }
 }
