@@ -154,6 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faskey: 0
   combo: 0
+  weapon: 
+  season: 0
 --- !u!4 &21304911
 Transform:
   m_ObjectHideFlags: 0

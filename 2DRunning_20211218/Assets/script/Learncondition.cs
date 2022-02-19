@@ -1,3 +1,4 @@
+using System.Drawing;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -47,6 +48,7 @@ public class Learncondition : MonoBehaviour
         }
         #endregion
 
+        #region switch判斷式
         //switch 語法
         //switch 判斷的資料
         //{
@@ -76,6 +78,27 @@ public class Learncondition : MonoBehaviour
                 print("這不是武器");
                 break;
         }
+        #endregion
+
+        #region switch + season
+        // switch + season
+        switch (season)
+        {
+            case Season.spring:
+                print("春天");
+                break;
+            case Season.summer:
+                print("夏天");
+                break;
+            case Season.fall:
+                print("秋天");
+                break;
+            case Season.winter:
+                print("冬天");
+                break;
+        }
+        #endregion
+
     }
 
     private void Update()
