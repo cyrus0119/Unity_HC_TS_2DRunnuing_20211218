@@ -767,6 +767,8 @@ MonoBehaviour:
   parameterSlide: "\u89F8\u767C\u6ED1\u884C"
   parameterDead: "\u89F8\u767C\u6B7B\u4EA1"
   keyjump: 32
+  countjumpmax: 2
+  countjump: 2
 --- !u!1 &718981414
 GameObject:
   m_ObjectHideFlags: 0

@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
         bool InputJump = Input.GetKeyDown(KeyCode.Space);
 
         //如果 按下跳躍 並且 跳躍段數>0 就 往上跳 
-        if (InputJump)
+        if (InputJump && countjump >0 )
         {
             rig.AddForce(new Vector2(0,jump));
             countjump--;
