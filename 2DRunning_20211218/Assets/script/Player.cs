@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     [Tooltip("跳躍按鍵")]
     public KeyCode keyjump = KeyCode.Space;
-    #endregion
+
     //屬性面板 debug模式 可看私人資料
     private Rigidbody2D rig;
     [Header("跳躍最大段數"), Range(0, 5)]
@@ -29,21 +29,54 @@ public class Player : MonoBehaviour
     //存取Transform的第一種方式
     //public Transform traPlayer;
 
+    [Header("檢查地板位移")]
+    public Vector3 v3GroudOffset;
+    [Header("檢查地板尺寸")]
+    public Vector3 v3GroudSize = Vector3.one;
+    [Header("地板圖層")]
+    public LayerMask layerGround;
+
+    private Animator ani;
+
+    [Header("滑行按鍵")]
+    public KeyCode keySlide = KeyCode.DownArrow;
+
+    private CapsuleCollider2D cc2d;
+
+    #endregion
+
+
+
     #region 事件
 
+
+    private void OnDrawGizmos()
+    {
+        //決定圖示事件
+        Gizmos.color = new Color(1, 0, 0.5f, 0.5f);
+        //繪製圖示
+        //圖示 繪製方體(中心點 尺寸)
+        Gizmos.DrawCube(transform.position + v3GroudOffset, v3GroudSize);
+    }
     private void Start()
     {
         //GetComponent<>(); <>存取泛型,所有類型
-        //取得所有類型
+        //取得指定元件
         rig = GetComponent<Rigidbody2D>();
+        ani = GetComponent<Animator>();
+        cc2d = GetComponent<CapsuleCollider2D>();
+
     }
 
     private void Update()
     {
         Run();
-        Jomp(); 
+        Jomp();
+        Slide();
     }
     #endregion
+
+
 
     #region 方法
     /// <summary>
@@ -70,13 +103,39 @@ public class Player : MonoBehaviour
         bool InputJump = Input.GetKeyDown(KeyCode.Space);
 
         //如果 按下跳躍 並且 跳躍段數>0 就 往上跳 
-        if (InputJump && countjump >0 )
+        if (InputJump && countjump > 0)
         {
-            rig.AddForce(new Vector2(0,jump));
+            rig.AddForce(new Vector2(0, jump));
             countjump--;
+
+            ani.SetTrigger(parameterJump);
+
         }
+
+        Collider2D hit = Physics2D.OverlapBox(transform.position + v3GroudOffset, v3GroudSize, 0, layerGround);
+
+
+        if (hit && rig.velocity.y < 0)
+        {
+            countjump = countjumpmax;
+        }
+
     }
 
+    /// <summary>
+    ///滑行
+    /// </summary> 
+    private void Slide()
+    {
+        if (Input.GetKey(keySlide))
+        {
+            ani.SetBool(parameterSlide, true);
+        }
+        else
+        {
+            ani.SetBool(parameterSlide, false);
+        }
+    }
 
 
     #endregion
